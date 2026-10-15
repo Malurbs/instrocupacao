@@ -3,67 +3,680 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Agenda dos Instrutores - Outubro 2026</title>
+<title>Ocupação dos instrutores · Outubro 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f6f9;--card:#fff;--tx:#1a2433;--mut:#5d6b7e;--pri:#0b5cab;--bd:#dde3ea;--hi:#e6f0fb;--wn:#fff3d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151c;--card:#1a212b;--tx:#e8edf3;--mut:#93a1b3;--pri:#5aa2ee;--bd:#2c3644;--hi:#1f3350;--wn:#3a3020}}
-:root[data-theme="dark"]{--bg:#10151c;--card:#1a212b;--tx:#e8edf3;--mut:#93a1b3;--pri:#5aa2ee;--bd:#2c3644;--hi:#1f3350;--wn:#3a3020}
+:root{
+  --bg:#EDF0F5; --surface:#FFFFFF; --ink:#172033; --muted:#5B6578; --line:#D5DBE5; --soft:#E3E8F0;
+  --accent:#2446B8; --accent-ink:#FFFFFF; --warn:#B45309; --ok:#0B7D5F; --over:#B91C1C; --holiday:#FCE7E4; --holiday-ink:#9F2B1C;
+  --on-uc:#FFFFFF; --c0:#2446B8; --c1:#0B7D5F; --c2:#C2410C; --c3:#8A2FA0; --c4:#9A6B00; --c5:#BE185D;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1420; --surface:#172030; --ink:#E8EDF5; --muted:#9AA6BA; --line:#2A3549; --soft:#1F293B;
+    --accent:#7F98F2; --accent-ink:#0F1420; --warn:#F5A524; --ok:#34C39A; --over:#F87171; --holiday:#3A1F1E; --holiday-ink:#F4A097;
+    --on-uc:#0F1420; --c0:#6E8AF0; --c1:#34C39A; --c2:#F0844A; --c3:#C27BDB; --c4:#D8AE3A; --c5:#F0679F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1420; --surface:#172030; --ink:#E8EDF5; --muted:#9AA6BA; --line:#2A3549; --soft:#1F293B;
+  --accent:#7F98F2; --accent-ink:#0F1420; --warn:#F5A524; --ok:#34C39A; --over:#F87171; --holiday:#3A1F1E; --holiday-ink:#F4A097;
+  --on-uc:#0F1420; --c0:#6E8AF0; --c1:#34C39A; --c2:#F0844A; --c3:#C27BDB; --c4:#D8AE3A; --c5:#F0679F;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:900px;margin:0 auto;padding:16px}
-h1{font-size:1.3rem;margin:.2rem 0}
-.sub{color:var(--mut);font-size:.85rem;margin:0 0 14px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:14px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:999px;font-size:.95rem;cursor:pointer}
-.chip.on{background:var(--pri);border-color:var(--pri);color:#fff}
-.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:10px}
-.bar h2{font-size:1.1rem;margin:0}
-label{font-size:.85rem;color:var(--mut);display:flex;gap:6px;align-items:center}
-.tw{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:.92rem}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd);white-space:nowrap}
-th{color:var(--mut);font-weight:600;font-size:.78rem;text-transform:uppercase}
-tr.hoje td{background:var(--hi);font-weight:600}
-tr.fer td{background:var(--wn);color:var(--mut)}
-.ead{font-size:.7rem;border:1px solid var(--pri);color:var(--pri);border-radius:6px;padding:1px 5px;margin-left:6px}
-.msg{color:var(--mut);font-size:.9rem;padding:6px 0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 "Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 20px 60px}
+
+/* top bar */
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font:700 15px/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-weight:500}
+.updated{color:var(--muted);font-size:13px}
+
+/* instructor picker */
+.picker{margin-top:18px;display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:500;font-size:14px;white-space:nowrap}
+.chip:hover{border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* welcome */
+.welcome{margin-top:40px;max-width:760px}
+.welcome h1{font:800 clamp(38px,7vw,72px)/.95 "Bricolage Grotesque",sans-serif;letter-spacing:-.035em;margin:0 0 16px}
+.welcome p{color:var(--muted);font-size:17px;margin:0 0 24px}
+.grid-names{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;max-width:720px}
+.grid-names button{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:left;font-weight:600;font-size:16px}
+.grid-names button small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}
+.grid-names button:hover{border-color:var(--accent)}
+
+/* instructor header */
+.hero{margin-top:28px;display:grid;grid-template-columns:1fr auto;gap:12px 24px;align-items:end}
+.hero h1{font:800 clamp(44px,9vw,96px)/.9 "Bricolage Grotesque",sans-serif;letter-spacing:-.04em;margin:0}
+.hero .sub{grid-column:1/-1;color:var(--muted);font-size:16px;margin:0}
+.next{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 14px;max-width:320px}
+.next b{display:block;font-weight:600;font-size:13px;color:var(--muted)}
+.next span{font-weight:600}
+
+/* layout */
+.main{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
+
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:8px;font-weight:500;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(15,20,32,.12)}
+.key{display:flex;gap:14px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.key i{display:inline-block;width:18px;height:10px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+.key .pres{background:var(--muted)}
+.key .ead{border:1.5px dashed var(--muted)}
+
+/* calendar */
+.cal{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cal-head,.cal-week{display:grid;grid-template-columns:28px repeat(6,minmax(0,1fr))}
+.cal-head div{padding:10px 8px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line)}
+.cal-week + .cal-week{border-top:1px solid var(--line)}
+.rail{display:grid;grid-template-rows:26px repeat(3,26px);gap:4px;padding:8px 0 10px;border-right:1px solid var(--line);font-size:10px;font-weight:600;color:var(--muted);text-align:center}
+.rail span{display:flex;align-items:center;justify-content:center}
+.day{position:relative;display:grid;grid-template-rows:26px repeat(3,26px);gap:4px;padding:8px 6px 10px;border:0;background:none;text-align:left;min-width:0;border-left:1px solid var(--line)}
+.rail + .day{border-left:0}
+.day:hover{background:var(--soft)}
+.day[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 10%,transparent);box-shadow:inset 0 0 0 2px var(--accent)}
+.day.out{opacity:.35;pointer-events:none}
+.dnum{font:700 15px/26px "Bricolage Grotesque",sans-serif;display:flex;justify-content:space-between;align-items:center}
+.dnum em{font:600 10px/1 "Schibsted Grotesk",sans-serif;font-style:normal;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);padding:3px 6px;border-radius:99px}
+.day.today .dnum>span:first-child{background:var(--accent);color:var(--accent-ink);border-radius:99px;padding:0 8px}
+.slot{position:relative;border-radius:6px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:space-between;padding:0 7px;min-width:0;overflow:hidden;white-space:nowrap;background:var(--soft)}
+.slot.empty{background:none;border:1px dotted var(--line)}
+.slot.fill{background:var(--uc);color:var(--on-uc)}
+.slot.ead{background:color-mix(in srgb,var(--uc) 12%,transparent);color:var(--uc);border:1.5px dashed var(--uc)}
+.slot .x{font-size:10px;font-weight:600;opacity:.85}
+.holiday{grid-row:2/5;border-radius:6px;background:var(--holiday);color:var(--holiday-ink);font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;text-align:center}
+@media (max-width:560px){
+  .wrap{padding:14px 12px 48px}
+  .cal-head,.cal-week{grid-template-columns:18px repeat(6,minmax(0,1fr))}
+  .day{padding:6px 3px 8px;gap:3px;grid-template-rows:22px repeat(3,22px)}
+  .rail{grid-template-rows:22px repeat(3,22px);gap:3px;padding:6px 0 8px;font-size:9px}
+  .slot{font-size:10px;padding:0 3px;justify-content:center}
+  .slot .x{display:none}
+  .dnum{font-size:13px;line-height:22px}
+  .dnum em{display:none}
+  .dnum .att{padding:3px 5px;font-size:9px}
+  .dnum .att .long{display:none}
+  .dnum .ico{font-size:10px;margin-right:2px}
+  .cal-head div{padding:8px 3px;font-size:11px;text-align:center}
+  .holiday{font-size:10px}
+}
+
+/* list */
+.list{display:flex;flex-direction:column;gap:10px}
+.lday{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:64px 1fr;gap:12px}
+.lday.past{opacity:.55}
+.ldate{font:700 26px/1 "Bricolage Grotesque",sans-serif}
+.ldate small{display:block;font:500 12px/1.4 "Schibsted Grotesk",sans-serif;color:var(--muted);margin-top:4px}
+.week-label{font-size:13px;color:var(--muted);font-weight:600;margin:10px 0 0}
+
+/* lessons */
+.lesson{display:grid;grid-template-columns:4px 1fr;gap:10px;padding:6px 0}
+.lesson + .lesson{border-top:1px solid var(--soft)}
+.lesson .bar{border-radius:4px;background:var(--uc)}
+.lesson .bar.ead{background:repeating-linear-gradient(180deg,var(--uc) 0 4px,transparent 4px 7px)}
+.lesson .row1{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.lesson .uc{font-weight:700;color:var(--uc)}
+.lesson .turno{font-size:13px;color:var(--muted)}
+.lesson .turma{font-size:13px;color:var(--muted);word-break:break-word}
+.tag{font-size:11px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--soft);color:var(--muted)}
+.tag.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+
+/* side */
+.side{display:flex;flex-direction:column;gap:14px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px))}
+@media (max-width:900px){.side{position:static}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.panel h2{font:700 18px/1.2 "Bricolage Grotesque",sans-serif;margin:0 0 10px;letter-spacing:-.01em}
+.panel .hint{color:var(--muted);font-size:14px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.stats div{background:var(--soft);border-radius:10px;padding:10px}
+.stats b{display:block;font:700 24px/1 "Bricolage Grotesque",sans-serif}
+.stats span{font-size:12px;color:var(--muted)}
+.uclist{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.uclist li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.sw{min-width:44px;text-align:center;border-radius:6px;padding:3px 6px;font-weight:700;font-size:12px;color:var(--on-uc);background:var(--uc)}
+.uclist small{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+.uclist .n{font-weight:600;font-size:13px;color:var(--muted)}
+.turmas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.turmas li{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.turmas li span:first-child{font-weight:600;word-break:break-word}
+.turmas li span:last-child{color:var(--muted);white-space:nowrap}
+.foot{margin-top:40px;color:var(--muted);font-size:13px}
+
+.picker .sep{flex:none;align-self:center;font-size:12px;color:var(--muted);padding:0 4px 0 10px;border-left:1px solid var(--line);margin-left:4px}
+.chip.trainee{border-style:dashed}
+.chip.trainee[aria-pressed="true"]{border-style:solid}
+.grid-label{font-size:14px;font-weight:600;color:var(--muted);margin:22px 0 8px}
+.grid-names button.trainee{border-style:dashed}
+.dnum .att{font:700 10px/1 "Schibsted Grotesk",sans-serif;color:var(--surface);background:var(--warn);padding:3px 7px;border-radius:99px}
+.dnum .ico{font-size:12px;color:var(--accent);margin-right:4px}
+.dnum .right{display:flex;align-items:center}
+.slot.clash{box-shadow:0 0 0 2px var(--warn)}
+.slot .more{font-size:10px;font-weight:700;opacity:.9}
+.slot.apoio{background:none;border:1.5px solid var(--accent);color:var(--accent)}
+.alert{border-radius:10px;background:color-mix(in srgb,var(--warn) 14%,transparent);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);padding:10px 12px;margin:4px 0 10px;font-size:14px}
+.alert strong{color:var(--warn)}
+.alert ul{margin:6px 0 0;padding-left:18px}
+.alert button{margin-top:8px}
+.clashdays{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.clashdays button{border:1px solid color-mix(in srgb,var(--warn) 50%,transparent);background:color-mix(in srgb,var(--warn) 10%,transparent);color:var(--ink);border-radius:8px;padding:4px 9px;font-size:13px}
+.notes{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.notes h3{font:700 15px/1.2 "Bricolage Grotesque",sans-serif;margin:0 0 8px}
+.note{background:var(--soft);border-radius:10px;padding:9px 11px;margin-bottom:8px;font-size:14px}
+.note .meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;margin-bottom:3px;flex-wrap:wrap}
+.note .who{font-weight:600;color:var(--accent)}
+.note p{margin:0;white-space:pre-wrap;word-break:break-word}
+.note .del{border:0;background:none;color:var(--muted);font-size:12px;padding:0;text-decoration:underline}
+.note .del.sure{color:var(--warn);font-weight:600}
+.form{display:grid;gap:8px;margin-top:6px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.form label{font-size:12px;font-weight:600;color:var(--muted);display:grid;gap:3px}
+.form select,.form textarea{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:100%}
+.form textarea{min-height:70px;resize:vertical}
+.btn{border:0;border-radius:9px;padding:9px 14px;font-weight:600;font-size:14px;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:default}
+.err{color:var(--warn);font-size:13px;margin:0}
+.lnote{font-size:13px;color:var(--muted);padding:6px 0 0;border-top:1px dashed var(--line);margin-top:6px}
+.lnote b{color:var(--accent);font-weight:600}
+
+.picker[hidden]{display:none}
+.topright{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#mesbar .alert{margin:14px 0 0}
+/* ocupação */
+.occ{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:center}
+.occ .pct{font:800 44px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em}
+.occ .lbl{font-size:13px;font-weight:600;color:var(--muted)}
+.occ .desc{font-size:14px;color:var(--muted)}
+.occ .desc b{color:var(--ink);font-weight:600}
+.status{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.status.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.status.low{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.status.high{background:color-mix(in srgb,var(--over) 16%,transparent);color:var(--over)}
+.obar{position:relative;height:12px;border-radius:99px;background:var(--soft);overflow:visible}
+.obar .fill{position:absolute;inset:0 auto 0 0;border-radius:99px;max-width:100%}
+.obar .fill.ok{background:var(--ok)}.obar .fill.low{background:var(--warn)}.obar .fill.high{background:var(--over)}
+.obar .meta{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);border-radius:2px}
+.occ .barwrap{grid-column:1/-1;margin-top:8px}
+.occ .scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;position:relative;height:14px}
+.occ .scale .m{position:absolute;transform:translateX(-50%);font-weight:600;color:var(--ink)}
+.weeks{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:12px}
+.weeks>div{background:var(--soft);border-radius:9px;padding:8px 10px;font-size:12px;color:var(--muted)}
+.weeks b{display:block;font:700 18px/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.weeks .wb{height:4px;border-radius:4px;background:var(--line);margin-top:6px;overflow:hidden}
+.weeks .wb i{display:block;height:100%}
+@media (max-width:560px){.weeks{grid-template-columns:repeat(3,minmax(0,1fr))}.occ .pct{font-size:36px}}
+.team{margin-top:34px;max-width:760px}
+.team h2{font:700 20px/1.2 "Bricolage Grotesque",sans-serif;margin:0 0 4px}
+.team p{margin:0 0 14px;color:var(--muted);font-size:14px}
+.trow{display:grid;grid-template-columns:130px minmax(0,1fr) 52px;gap:12px;align-items:center;padding:7px 8px;border:0;background:none;width:100%;text-align:left;border-radius:8px}
+.trow:hover{background:var(--surface)}
+.trow .nm{font-weight:600;font-size:14px}
+.trow .nm small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.trow .v{font-weight:700;text-align:right;font-size:14px}
+@media (max-width:560px){.trow{grid-template-columns:96px minmax(0,1fr) 44px;gap:8px}}
+
+.slot.outro{background:none;border:1px solid var(--line);color:var(--muted);font-weight:600;text-overflow:ellipsis;display:block;line-height:24px}
+.outro-line{font-size:13px;color:var(--muted);padding:6px 0;border-top:1px solid var(--soft)}
+.outro-line b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .5s cubic-bezier(.2,.7,.2,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
 </style>
 </head>
 <body>
-<main>
-<h1>📅 Agenda dos Instrutores — Outubro/2026</h1>
-<p class="sub">Cronograma atualizado em 24/09/2026. Clique no seu nome para ver suas aulas.</p>
-<div class="card"><div class="chips" id="chips"></div></div>
-<div class="card" id="res"><div class="msg">Selecione um instrutor acima.</div></div>
-</main>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">CTTI <span>Ocupação dos instrutores</span></div>
+    <div class="topright"><span class="updated" id="atualizado"></span><div class="seg" id="meses" role="group" aria-label="Mês"></div></div>
+  </div>
+  <div id="mesbar"></div>
+  <nav class="picker" id="picker" aria-label="Instrutores"></nav>
+  <div id="app"></div>
+  <p class="foot">Aulas com borda tracejada são EAD. O aviso "Atenção" marca turnos com duas aulas presenciais para a mesma pessoa. Ocupação = horas em aula presenciais (4 h por turno, ou a duração da aula quando for menor; aulas EAD não contam) sobre a jornada de segunda a sexta, sem os feriados; duas aulas no mesmo turno contam uma vez.</p>
+</div>
+
 <script>
-const DATA=[["Claudio","2026-10-01","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-01","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-01","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-01","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-01","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-01","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Henrique","2026-10-01","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-01","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-01","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-01","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-01","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-01","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-01","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-01","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-01","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",0],["Airton","2026-10-01","NOITE","HT-SIS-05-N-25-10495 (2-2025)","IC",0],["Elias","2026-10-01","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Paulo Roberto","2026-10-01","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-01","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-01","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-02","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-02","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-02","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-02","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-02","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-02","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Henrique","2026-10-02","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-02","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-02","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-02","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-02","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-02","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-02","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-02","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-02","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","DS",0],["Airton","2026-10-02","NOITE","HT-SIS-05-N-25-10495 (2-2025)","IC",0],["Elias","2026-10-02","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Paulo Roberto","2026-10-02","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-02","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-02","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Daniel","2026-10-03","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","SSM",0],["Marcel","2026-10-03","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",1],["Fernando","2026-10-03","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","II 4.0",1],["Daniel","2026-10-03","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","FD",1],["Airton","2026-10-03","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",1],["Fernando","2026-10-03","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","II 4.0",1],["Rodolfo","2026-10-03","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PI",1],["Daniel","2026-10-03","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","FD",1],["Daniel","2026-10-03","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","FD",1],["Airton","2026-10-03","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",1],["Airton","2026-10-03","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",1],["Djalma","2026-10-03","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Elias","2026-10-03","NOITE","HT-SIS-02-N-26 (1-2026)","SSM",0],["Paulo Roberto","2026-10-03","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-03","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PI",1],["Rômulo","2026-10-03","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","FD",1],["Claudio","2026-10-05","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-05","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-05","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","FEA",0],["Marcel","2026-10-05","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-05","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-05","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-05","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-05","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-05","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",0],["Fernando","2026-10-05","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-05","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-05","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-05","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Will","2026-10-05","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","BD",0],["Djalma","2026-10-05","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","DS",0],["Djalma","2026-10-05","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-05","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-05","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-05","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-05","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-06","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-06","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-06","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","FEA",0],["Marcel","2026-10-06","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-06","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-06","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-06","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-06","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-06","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",0],["Fernando","2026-10-06","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-06","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-06","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-06","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-06","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","BD",0],["Djalma","2026-10-06","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","DS",0],["Djalma","2026-10-06","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-06","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-06","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-06","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-06","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-07","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-07","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-07","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-07","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-07","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-07","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Henrique","2026-10-07","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-07","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-07","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-07","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-07","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-07","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-07","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-07","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-07","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","DS",0],["Airton","2026-10-07","NOITE","HT-SIS-05-N-25-10495 (2-2025)","IC",0],["Elias","2026-10-07","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Paulo Roberto","2026-10-07","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-07","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-07","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-08","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-08","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-08","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-08","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-08","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-08","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Henrique","2026-10-08","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-08","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-08","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-08","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-08","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-08","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-08","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-08","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-08","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",0],["Airton","2026-10-08","NOITE","HT-SIS-05-N-25-10495 (2-2025)","IC",0],["Elias","2026-10-08","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Paulo Roberto","2026-10-08","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-08","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-08","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-09","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-09","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-09","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","SSM",0],["Marcel","2026-10-09","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",1],["Fernando","2026-10-09","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PI",1],["Daniel","2026-10-09","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-09","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-09","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",1],["Airton","2026-10-09","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",1],["Fernando","2026-10-09","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PI",1],["Rodolfo","2026-10-09","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PI",1],["Daniel","2026-10-09","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",1],["Daniel","2026-10-09","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",1],["Airton","2026-10-09","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",1],["Airton","2026-10-09","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",1],["Djalma","2026-10-09","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Elias","2026-10-09","NOITE","HT-SIS-02-N-26 (1-2026)","SSM",0],["Paulo Roberto","2026-10-09","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-09","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PI",1],["Rômulo","2026-10-09","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",1],["Claudio","2026-10-13","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-13","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-13","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","FEA",0],["Marcel","2026-10-13","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-13","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-13","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Marcel","2026-10-13","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-13","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",0],["Fernando","2026-10-13","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-13","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-13","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-13","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-13","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","BD",0],["Djalma","2026-10-13","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","DS",0],["Djalma","2026-10-13","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-13","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-13","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-13","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-13","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-14","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-14","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-14","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-14","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-14","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-14","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Marcel","2026-10-14","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-14","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-14","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-14","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-14","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-14","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-14","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-14","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","DS",0],["Djalma","2026-10-14","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Elias","2026-10-14","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Paulo Roberto","2026-10-14","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-14","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-14","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-15","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-15","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-15","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-15","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",0],["Fernando","2026-10-15","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-15","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Marcel","2026-10-15","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-15","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-15","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-15","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-15","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-15","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-15","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-15","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-15","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Elias","2026-10-15","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Paulo Roberto","2026-10-15","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",0],["Rodolfo","2026-10-15","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-15","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-16","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-16","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-16","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","SSM",0],["Marcel","2026-10-16","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",1],["Fernando","2026-10-16","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PI",1],["Daniel","2026-10-16","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",1],["Marcel","2026-10-16","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-16","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",1],["Fernando","2026-10-16","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PI",1],["Rodolfo","2026-10-16","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",1],["Daniel","2026-10-16","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",1],["Daniel","2026-10-16","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",1],["Will","2026-10-16","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",1],["Djalma","2026-10-16","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",1],["Djalma","2026-10-16","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",1],["Elias","2026-10-16","NOITE","HT-SIS-02-N-26 (1-2026)","SSM",1],["Paulo Roberto","2026-10-16","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",1],["Rodolfo","2026-10-16","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",1],["Rômulo","2026-10-16","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",1],["Claudio","2026-10-19","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-19","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-19","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","IC",0],["Marcel","2026-10-19","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",0],["Fernando","2026-10-19","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-19","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-19","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-19","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-19","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",0],["Fernando","2026-10-19","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-19","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-19","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-19","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Will","2026-10-19","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-19","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-19","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-19","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-19","NOITE","HT-SIS-06-N-26-10495(2-2026)","MS",0],["Rodolfo","2026-10-19","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-19","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-20","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-20","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-20","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","IC",0],["Marcel","2026-10-20","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",0],["Fernando","2026-10-20","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-20","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-20","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-20","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-20","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",0],["Fernando","2026-10-20","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-20","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-20","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-20","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-20","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-20","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-20","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-20","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-20","NOITE","HT-SIS-06-N-26-10495(2-2026)","MS",0],["Rodolfo","2026-10-20","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-20","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-21","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-21","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-21","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-21","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",0],["Fernando","2026-10-21","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-21","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Henrique","2026-10-21","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-21","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-21","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-21","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-21","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-21","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-21","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-21","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-21","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-21","NOITE","HT-SIS-05-N-25-10495 (2-2025)","TS",0],["Elias","2026-10-21","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Airton","2026-10-21","NOITE","HT-SIS-06-N-26-10495(2-2026)","FEA",0],["Rodolfo","2026-10-21","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-21","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-22","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-22","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-22","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Marcel","2026-10-22","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",0],["Fernando","2026-10-22","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-22","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Henrique","2026-10-22","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-22","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-22","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-22","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-22","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-22","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-22","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-22","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",0],["Airton","2026-10-22","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-22","NOITE","HT-SIS-05-N-25-10495 (2-2025)","TS",0],["Elias","2026-10-22","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Airton","2026-10-22","NOITE","HT-SIS-06-N-26-10495(2-2026)","FEA",0],["Rodolfo","2026-10-22","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-22","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-23","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-23","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-23","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","IC",1],["Marcel","2026-10-23","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","PC",1],["Fernando","2026-10-23","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PI",1],["Daniel","2026-10-23","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",1],["Henrique","2026-10-23","MANHÃ","APREDCOM02M","REDES",0],["Marcel","2026-10-23","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-23","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",1],["Fernando","2026-10-23","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PI",1],["Rodolfo","2026-10-23","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",1],["Daniel","2026-10-23","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",1],["Daniel","2026-10-23","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",1],["Will","2026-10-23","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",1],["Djalma","2026-10-23","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",1],["Djalma","2026-10-23","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",1],["Airton","2026-10-23","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",1],["Paulo Roberto","2026-10-23","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",1],["Rodolfo","2026-10-23","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",1],["Rômulo","2026-10-23","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",1],["Claudio","2026-10-26","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-26","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-26","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","IC",0],["Marcel","2026-10-26","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",0],["Fernando","2026-10-26","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-26","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Marcel","2026-10-26","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-26","TARDE","HT-SIS-04-T-25-10495 (2-2025)","TS",0],["Fernando","2026-10-26","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-26","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-26","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-26","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Will","2026-10-26","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-26","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-26","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-26","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-26","NOITE","HT-SIS-06-N-26-10495(2-2026)","MS",0],["Rodolfo","2026-10-26","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-26","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-27","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-27","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-27","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","IC",0],["Marcel","2026-10-27","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",0],["Fernando","2026-10-27","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-27","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","DFE",0],["Marcel","2026-10-27","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-27","TARDE","HT-SIS-04-T-25-10495 (2-2025)","TS",0],["Fernando","2026-10-27","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-27","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-27","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-27","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-27","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-27","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-27","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",0],["Airton","2026-10-27","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",0],["Paulo Roberto","2026-10-27","NOITE","HT-SIS-06-N-26-10495(2-2026)","MS",0],["Rodolfo","2026-10-27","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-27","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-28","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-28","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-28","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Henrique","2026-10-28","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","FEA",0],["Fernando","2026-10-28","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-28","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Marcel","2026-10-28","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-28","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-28","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-28","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Daniel","2026-10-28","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","DFE",0],["Henrique","2026-10-28","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",0],["Airton","2026-10-28","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-28","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",0],["Djalma","2026-10-28","NOITE","HT-SIS-05-N-25-10495 (2-2025)","TS",0],["Elias","2026-10-28","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Airton","2026-10-28","NOITE","HT-SIS-06-N-26-10495(2-2026)","FEA",0],["Rodolfo","2026-10-28","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Rômulo","2026-10-28","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","DFE",0],["Claudio","2026-10-29","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-29","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Daniel","2026-10-29","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","PA",0],["Henrique","2026-10-29","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","FEA",0],["Fernando","2026-10-29","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PPJ",0],["Henrique","2026-10-29","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",0],["Marcel","2026-10-29","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Paulo Roberto","2026-10-29","TARDE","HT-SIS-04-T-25-10495 (2-2025)","DS",0],["Fernando","2026-10-29","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PPJ",0],["Rodolfo","2026-10-29","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","PPJ",0],["Claudio","2026-10-29","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",0],["Daniel","2026-10-29","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","DFE",0],["Will","2026-10-29","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",0],["Airton","2026-10-29","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","FEA",0],["Djalma","2026-10-29","NOITE","HT-SIS-05-N-25-10495 (2-2025)","TS",0],["Elias","2026-10-29","NOITE","HT-SIS-02-N-26 (1-2026)","PA",0],["Airton","2026-10-29","NOITE","HT-SIS-06-N-26-10495(2-2026)","FEA",0],["Rodolfo","2026-10-29","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","PPJ",0],["Paulo César","2026-10-29","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",0],["Claudio","2026-10-30","MANHÃ","AI-APW-01-M-26-10495 (PSU 1-2026)","DSW",0],["Will","2026-10-30","MANHÃ","AI-APW-03-M-25-10495 (PSU 1-2025)","DSW",0],["Henrique","2026-10-30","MANHÃ","HT-SIS-01-M-26-10495 (1-2026)","IC",1],["Marcel","2026-10-30","MANHÃ","HT-SIS-05-M-26-10495 (2-2026)","MS",1],["Fernando","2026-10-30","MANHÃ","HT-PJD-01-M-26-10495 (Trilhas 6)","PI",1],["Henrique","2026-10-30","MANHÃ","HT-IPI-01-M-26-10495 (Trilhas 6)","BD",1],["Marcel","2026-10-30","TARDE","AI-APW-04-T-25-10495 (PSU 2-2025)","DSW",0],["Airton","2026-10-30","TARDE","HT-SIS-04-T-25-10495 (2-2025)","IC",1],["Fernando","2026-10-30","TARDE","HT-PJD-03-T-26-10495 (Trilhas 6)","PI",1],["Rodolfo","2026-10-30","TARDE","HT-PJD-04-T-26-10495 (Trilhas 6)","II4.0",1],["Claudio","2026-10-30","TARDE","HT-IPI-03-T-26-10495 (Trilhas 6)","BD",1],["Henrique","2026-10-30","TARDE","HT-IPI-04-T-26-10495 (Trilhas 6)","BD",1],["Will","2026-10-30","TARDE","HT-SIS-03-T-26-10495 (Trilhas 6)","PA",1],["Djalma","2026-10-30","TARDE","HT-SIS-04-T-26-10495 (Trilhas 6)","PA",1],["Djalma","2026-10-30","NOITE","HT-SIS-05-N-25-10495 (2-2025)","DS",1],["Airton","2026-10-30","NOITE","HT-SIS-02-N-26 (1-2026)","FEA",1],["Paulo Roberto","2026-10-30","NOITE","HT-SIS-06-N-26-10495(2-2026)","PC",1],["Rodolfo","2026-10-30","NOITE","HT-PJD-02-N-26-10495 (Trilhas 6)","II4.0",1],["Paulo César","2026-10-30","NOITE","HT-IPI-02-N-26-10495 (Trilhas 6)","BD",1]],NAMES=["Airton", "Claudio", "Daniel", "Djalma", "Elias", "Fernando", "Henrique", "João", "Maiara", "Marcel", "Paulo César", "Paulo Roberto", "Rodolfo", "Rômulo", "Vitor", "Will"],HOL=["2026-10-12"];
-const DIA=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
-const $=id=>document.getElementById(id);
-let sel=null;
-const fmt=d=>{const[y,m,a]=d.split("-");return a+"/"+m};
-const dia=d=>{const[y,m,a]=d.split("-");return DIA[new Date(+y,+m-1,+a).getDay()]};
-const hoje=(()=>{const t=new Date();return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0")})();
-function chips(){$("chips").innerHTML=NAMES.map(n=>`<button class="chip${n===sel?" on":""}" data-n="${n}">${n}</button>`).join("")}
-function mostrar(){
-  const so=$("fut")&&$("fut").checked;
-  let rows=DATA.filter(r=>r[0]===sel).map(r=>({d:r[1],o:r[2]==="MANHÃ"?0:r[2]==="TARDE"?1:2,r}));
-  HOL.forEach(d=>rows.push({d,o:-1,h:1}));
-  rows.sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:a.o-b.o);
-  if(so)rows=rows.filter(x=>x.d>=hoje);
-  const n=rows.filter(x=>!x.h).length;
-  $("res").innerHTML=`<div class="bar"><h2>${sel} — ${n} aula(s)</h2><label><input type="checkbox" id="fut" ${so?"checked":""}> só a partir de hoje</label></div>`+
-  (n?"":'<div class="msg">Nenhuma aula lançada para este instrutor no período.</div>')+
-  `<div class="tw"><table><thead><tr><th>Data</th><th>Dia</th><th>Turno</th><th>Turma</th><th>Unidade Curricular</th></tr></thead><tbody>`+
-  rows.map(x=>x.h?`<tr class="fer"><td>${fmt(x.d)}</td><td>${dia(x.d)}</td><td colspan="3">FERIADO</td></tr>`:
-   `<tr class="${x.d===hoje?"hoje":""}"><td>${fmt(x.d)}</td><td>${dia(x.d)}</td><td>${x.r[2]}</td><td>${x.r[3]}</td><td>${x.r[4]}${x.r[5]?'<span class="ead">EAD</span>':""}</td></tr>`).join("")+
-  `</tbody></table></div>`;
-  $("fut").onchange=mostrar;
+const MONTHS = {"2026-10":{"turmas":[["HT-SIS-04-T-25","",0],["HT-SIS-04-T-26","Trilhas 6",1],["HT-SIS-03-T-26","Trilhas 6",1],["HT-SIS-05-N-25","",2],["HT-SIS-06-N-26","",2],["AI-APW-01-M-26","",0],["HT-IPI-01-M-26","Trilhas 6",0],["HT-IPI-03-T-26","Trilhas 6",1],["HT-SIS-01-M-26","",0],["HT-IPI-04-T-26","Trilhas 6",1],["ETCIBERS02N","",2],["HT-SIS-02-N-26","",2],["HT-PJD-01-M-26","Trilhas 6",0],["HT-PJD-03-T-26","Trilhas 6",1],["Exército (IRW)","",0],["Exército (RC)","",2],["HT-SIS-05-M-26","",0],["AI-APW-04-T-26","",1],["GOP","Aperfeiçoamento",1],["HT-IPI-02-N-26","Trilhas 6",2],["Informática p/ Escritório","",2],["HT-PJD-04-T-26","",1],["HT-PJD-02-N-26","",2],["AI-APW-03-M-25","",0],["MGS 17ª Turma","",0]],"ins":["Airton","Cláudio","Daniel","Djalma","Elias","Fernando","Henrique","Marcel","Paulo César","Paulo Roberto","Rodolfo","Rômulo","Will"],"ucs":["IC","FEA","DSW","BD","PA","SSM","DFE","DS","CIBER","PPJ","II 4.0","PI","FD","Exército","PC","MS","EI","EA","IE","TS","MGS"],"rows":[[3,0,0,0,0,1],[9,0,0,0,0,1],[1,1,1,0,1,0],[2,1,2,0,1,0],[3,1,2,0,1,1],[5,1,0,0,0,0],[6,1,0,0,0,0],[7,1,2,0,1,0],[8,1,1,0,1,0],[9,1,2,0,1,1],[13,1,0,0,0,0],[14,1,2,0,1,0],[15,1,1,0,1,0],[16,1,0,0,0,1],[19,1,0,0,0,0],[20,1,0,0,0,0],[21,1,2,0,1,0],[22,1,1,0,1,0],[23,1,0,0,0,1],[26,1,0,0,0,0],[27,1,0,0,0,0],[28,1,2,0,1,0],[29,1,1,0,1,0],[30,1,0,0,0,1],[1,2,3,0,0,0],[2,2,3,0,0,0],[3,2,1,0,1,1],[7,2,3,0,0,0],[9,2,1,0,1,1],[14,2,3,0,0,0],[19,2,4,0,1,0],[21,2,4,0,1,0],[26,2,4,0,1,0],[28,2,4,0,1,0],[1,0,5,1,2,0],[2,0,5,1,2,0],[5,0,5,1,2,0],[6,0,5,1,2,0],[7,0,5,1,2,0],[8,0,5,1,2,0],[9,0,5,1,2,0],[13,0,5,1,2,0],[14,0,5,1,2,0],[15,0,5,1,2,0],[16,0,5,1,2,0],[19,0,6,1,3,0],[20,0,6,1,3,0],[21,0,6,1,3,0],[22,0,6,1,3,0],[26,0,5,1,2,0],[27,0,5,1,2,0],[28,0,5,1,2,0],[29,0,5,1,2,0],[30,0,5,1,2,0],[1,1,7,1,3,0],[6,1,7,1,3,0],[8,1,7,1,3,0],[13,1,7,1,3,0],[15,1,7,1,3,0],[20,1,7,1,3,0],[22,1,7,1,3,0],[27,1,7,1,3,0],[29,1,7,1,3,0],[30,1,7,1,3,1],[1,0,8,2,4,0],[2,0,8,2,4,0],[3,0,8,2,5,1],[5,0,6,2,6,0],[6,0,6,2,6,0],[7,0,8,2,4,0],[8,0,8,2,4,0],[9,0,6,2,6,1],[13,0,6,2,6,0],[14,0,8,2,4,0],[15,0,8,2,4,0],[16,0,6,2,6,1],[19,0,8,2,4,0],[20,0,8,2,4,0],[21,0,8,2,4,0],[22,0,8,2,4,0],[23,0,6,2,6,1],[26,0,6,2,6,0],[27,0,6,2,6,0],[28,0,8,2,4,0],[29,0,8,2,4,0],[1,1,9,2,6,0],[2,1,7,2,6,0],[5,1,7,2,6,0],[6,1,9,2,6,0],[7,1,7,2,6,0],[8,1,9,2,6,0],[9,1,7,2,6,1],[13,1,9,2,6,0],[14,1,7,2,6,0],[15,1,9,2,6,0],[16,1,7,2,6,1],[19,1,7,2,6,0],[20,1,9,2,6,0],[21,1,7,2,6,0],[22,1,9,2,6,0],[23,1,7,2,6,1],[26,1,7,2,6,0],[27,1,9,2,6,0],[28,1,7,2,6,0],[29,1,9,2,6,0],[30,1,7,2,3,1],[8,2,8,2,5,1],[9,2,9,2,6,1],[15,2,8,2,5,1],[16,2,9,2,6,1],[22,2,8,2,0,1],[23,2,9,2,6,1],[16,0,3,3,7,1],[23,0,3,3,7,1],[30,0,3,3,7,1],[2,1,1,3,3,0],[5,1,1,3,3,0],[6,1,1,3,3,0],[7,1,1,3,3,0],[9,1,3,3,7,1],[13,1,1,3,3,0],[14,1,1,3,3,0],[16,1,1,3,4,1],[19,1,1,3,4,0],[20,1,1,3,4,0],[21,1,1,3,4,0],[23,1,1,3,4,1],[26,1,1,3,4,0],[27,1,1,3,4,0],[28,1,1,3,4,0],[30,1,1,3,4,1],[2,2,3,3,7,1],[5,2,3,3,7,0],[6,2,3,3,7,0],[7,2,10,3,8,0],[8,2,3,3,7,0],[9,2,10,3,8,1],[13,2,3,3,7,0],[14,2,10,3,8,0],[15,2,3,3,7,0],[16,2,10,3,8,1],[19,2,10,3,8,1],[20,2,3,3,7,0],[21,2,10,3,8,0],[22,2,3,3,7,0],[23,2,10,3,8,1],[26,2,10,3,8,1],[27,2,3,3,7,0],[28,2,10,3,8,0],[29,2,3,3,7,0],[30,2,10,3,8,1],[1,2,11,4,4,0],[2,2,11,4,4,0],[3,2,11,4,5,1],[5,2,11,4,4,0],[6,2,11,4,4,0],[7,2,11,4,4,0],[8,2,11,4,4,0],[9,2,11,4,5,1],[13,2,11,4,4,0],[14,2,11,4,4,0],[15,2,11,4,4,0],[16,2,11,4,5,1],[19,2,11,4,4,0],[20,2,11,4,7,0],[21,2,11,4,7,0],[22,2,11,4,7,0],[23,2,11,4,7,1],[26,2,11,4,7,0],[27,2,11,4,7,0],[28,2,11,4,4,0],[29,2,11,4,4,0],[30,2,11,4,7,1],[1,0,12,5,9,0],[2,0,12,5,10,0],[5,0,12,5,9,0],[6,0,12,5,9,0],[7,0,12,5,9,0],[8,0,12,5,9,0],[9,0,12,5,11,0],[13,0,12,5,9,0],[14,0,12,5,9,0],[15,0,12,5,9,0],[16,0,12,5,11,0],[19,0,12,5,9,0],[20,0,12,5,9,0],[21,0,12,5,9,0],[22,0,12,5,9,0],[23,0,12,5,11,0],[26,0,12,5,9,0],[27,0,12,5,9,0],[28,0,12,5,9,0],[29,0,12,5,9,0],[30,0,12,5,11,0],[1,1,13,5,9,0],[2,1,13,5,10,0],[5,1,13,5,9,0],[6,1,13,5,9,0],[7,1,13,5,9,0],[8,1,13,5,9,0],[9,1,13,5,11,0],[13,1,13,5,9,0],[14,1,13,5,9,0],[15,1,13,5,9,0],[16,1,13,5,11,0],[19,1,13,5,9,0],[20,1,13,5,9,0],[21,1,13,5,9,0],[22,1,13,5,9,0],[23,1,13,5,11,0],[26,1,13,5,9,0],[27,1,13,5,9,0],[28,1,13,5,9,0],[29,1,13,5,9,0],[30,1,13,5,11,0],[1,0,6,6,3,0],[2,0,6,6,3,0],[3,0,6,6,12,1],[5,0,8,6,1,0],[6,0,8,6,1,0],[7,0,6,6,3,0],[8,0,6,6,3,0],[9,0,6,6,12,1],[13,0,8,6,1,0],[14,0,6,6,3,0],[15,0,6,6,3,0],[19,0,14,6,13,0],[20,0,14,6,13,0],[21,0,14,6,13,0],[22,0,14,6,13,0],[23,0,14,6,13,0],[26,0,8,6,0,0],[27,0,8,6,0,0],[28,0,6,6,3,0],[29,0,6,6,3,0],[30,0,6,6,3,1],[2,1,7,6,12,1],[3,1,7,6,12,1],[30,1,8,6,0,1],[1,2,15,6,13,0],[2,2,15,6,13,0],[3,2,15,6,13,0],[5,2,15,6,13,0],[6,2,15,6,13,0],[7,2,15,6,13,0],[8,2,15,6,13,0],[9,2,15,6,13,0],[1,0,16,7,14,0],[2,0,16,7,14,0],[3,0,16,7,14,1],[5,0,16,7,14,0],[6,0,16,7,14,0],[7,0,16,7,14,0],[8,0,16,7,14,0],[9,0,16,7,14,1],[13,0,16,7,14,0],[14,0,16,7,14,0],[15,0,16,7,14,0],[16,0,16,7,14,1],[19,0,16,7,15,0],[20,0,16,7,15,0],[21,0,16,7,15,0],[22,0,16,7,15,0],[23,0,16,7,14,1],[26,0,16,7,15,0],[27,0,16,7,15,0],[28,0,16,7,15,0],[29,0,16,7,15,0],[30,0,16,7,15,1],[1,1,17,7,2,0],[2,1,17,7,2,0],[5,1,17,7,2,0],[6,1,17,7,2,0],[7,1,17,7,2,0],[8,1,17,7,2,0],[9,1,17,7,2,0],[10,1,17,7,2,1],[13,1,17,7,2,0],[14,1,17,7,2,0],[15,1,17,7,2,0],[16,1,17,7,2,0],[19,1,17,7,2,0],[20,1,17,7,2,0],[21,1,17,7,2,0],[22,1,17,7,2,0],[23,1,17,7,2,0],[26,1,17,7,2,0],[27,1,17,7,2,0],[28,1,17,7,2,0],[29,1,17,7,2,0],[30,1,17,7,2,0],[1,1,18,8,16,0,2,"14h às 16h"],[2,1,9,8,3,0],[3,1,9,8,3,1],[5,1,9,8,3,0],[6,1,18,8,16,0,2,"14h às 16h"],[7,1,9,8,3,0],[8,1,18,8,16,0,2,"14h às 16h"],[13,1,18,8,16,0,2,"14h às 16h"],[14,1,9,8,3,0],[15,1,18,8,16,0,2,"14h às 16h"],[19,1,9,8,3,0],[20,1,18,8,16,0,2,"14h às 16h"],[21,1,9,8,3,0],[22,1,18,8,16,0,2,"14h às 16h"],[26,1,9,8,3,0],[27,1,18,8,17,0,2,"14h às 16h"],[28,1,9,8,3,0],[29,1,18,8,17,0,2,"14h às 16h"],[30,1,9,8,3,1],[1,2,19,8,3,0],[5,2,20,8,18,0],[6,2,19,8,3,0],[7,2,20,8,18,0],[8,2,19,8,3,0],[9,2,20,8,18,0],[13,2,19,8,3,0],[14,2,20,8,18,0],[15,2,19,8,3,0],[16,2,20,8,18,0],[19,2,20,8,18,0],[20,2,19,8,3,0],[21,2,20,8,18,0],[22,2,19,8,3,0],[23,2,20,8,18,0],[26,2,20,8,18,0],[27,2,19,8,3,0],[28,2,20,8,18,0],[29,2,19,8,3,0],[30,2,19,8,6,1],[1,1,0,9,7,0],[2,1,0,9,7,0],[7,1,0,9,7,0],[8,1,0,9,7,0],[14,1,0,9,7,0],[15,1,0,9,7,0],[21,1,0,9,7,0],[22,1,0,9,7,0],[28,1,0,9,7,0],[29,1,0,9,7,0],[1,2,4,9,14,0],[2,2,4,9,14,0],[3,2,4,9,14,1],[5,2,4,9,14,0],[6,2,4,9,14,0],[7,2,4,9,14,0],[8,2,4,9,14,0],[9,2,4,9,14,1],[13,2,4,9,14,0],[14,2,4,9,14,0],[15,2,4,9,14,0],[16,2,4,9,14,1],[19,2,3,9,19,0],[20,2,4,9,15,0],[21,2,3,9,19,0],[22,2,4,9,15,0],[23,2,4,9,14,1],[26,2,3,9,19,0],[27,2,4,9,15,0],[28,2,3,9,19,0],[29,2,4,9,15,0],[30,2,4,9,15,1],[1,1,21,10,9,0],[2,1,21,10,11,1],[5,1,21,10,9,0],[6,1,21,10,9,0],[7,1,21,10,9,0],[8,1,21,10,9,0],[9,1,21,10,11,1],[13,1,21,10,9,0],[14,1,21,10,9,0],[15,1,21,10,9,0],[16,1,21,10,9,1],[19,1,21,10,9,0],[20,1,21,10,9,0],[21,1,21,10,9,0],[22,1,21,10,9,0],[23,1,21,10,9,1],[26,1,21,10,9,0],[27,1,21,10,9,0],[28,1,21,10,9,0],[29,1,21,10,9,0],[30,1,21,10,10,1],[1,2,22,10,9,0],[2,2,22,10,11,1],[5,2,22,10,9,0],[6,2,22,10,9,0],[7,2,22,10,9,0],[8,2,22,10,9,0],[9,2,22,10,11,1],[13,2,22,10,9,0],[14,2,22,10,9,0],[15,2,22,10,9,0],[16,2,22,10,9,1],[19,2,22,10,9,0],[20,2,22,10,9,0],[21,2,22,10,9,0],[22,2,22,10,9,0],[23,2,22,10,9,1],[26,2,22,10,9,0],[27,2,22,10,9,0],[28,2,22,10,9,0],[29,2,22,10,9,0],[30,2,22,10,9,1],[2,2,19,11,6,0],[3,2,19,11,12,1],[5,2,19,11,6,0],[7,2,19,11,6,0],[9,2,19,11,6,0],[14,2,19,11,6,0],[16,2,19,11,6,1],[19,2,19,11,6,0],[21,2,19,11,6,0],[23,2,19,11,6,1],[26,2,19,11,6,0],[28,2,19,11,6,0],[1,0,23,12,2,0],[2,0,23,12,2,0],[5,0,23,12,2,0],[6,0,23,12,2,0],[7,0,23,12,2,0],[8,0,23,12,2,0],[9,0,23,12,2,0],[10,0,23,12,2,1],[13,0,23,12,2,0],[14,0,23,12,2,0],[15,0,23,12,2,0],[16,0,23,12,2,0],[19,0,23,12,2,0],[20,0,23,12,2,0],[21,0,23,12,2,0],[22,0,23,12,2,0],[23,0,23,12,2,0],[26,0,23,12,2,0],[27,0,23,12,2,0],[28,0,23,12,2,0],[29,0,23,12,2,0],[30,0,23,12,2,0],[1,1,2,12,3,0],[5,1,2,12,3,0],[6,1,2,12,3,0],[8,1,2,12,3,0],[13,1,2,12,3,0],[15,1,2,12,3,0],[16,1,2,12,3,1],[19,1,2,12,4,0],[20,1,2,12,4,0],[22,1,2,12,4,0],[23,1,2,12,4,1],[26,1,2,12,4,0],[27,1,2,12,4,0],[29,1,2,12,4,0],[30,1,2,12,4,1],[1,0,6,13,3,0],[2,0,6,13,3,0],[5,0,8,13,1,0],[6,0,8,13,1,0],[7,0,6,13,3,0],[8,0,6,13,3,0],[19,0,5,13,2,0],[20,0,5,13,2,0],[21,0,5,13,2,0],[22,0,5,13,2,0],[23,0,5,13,2,0],[5,0,24,15,20,0],[6,0,24,15,20,0],[7,0,24,15,20,0],[8,0,24,15,20,0],[9,0,24,15,20,0],[5,1,24,15,20,0],[6,1,24,15,20,0],[7,1,24,15,20,0],[8,1,24,15,20,0],[9,1,24,15,20,0]],"out":[[8,0,0,"Compensação de horas"],[2,1,1,"Ausência"],[5,0,1,"Ausência"],[8,1,6,"Ausência"],[2,0,8,"COTEMIG"],[6,0,8,"COTEMIG"],[7,0,8,"COTEMIG"],[9,0,8,"COTEMIG"],[13,0,8,"COTEMIG"],[14,0,8,"COTEMIG"],[16,0,8,"COTEMIG"],[20,0,8,"COTEMIG"],[21,0,8,"COTEMIG"],[23,0,8,"COTEMIG"],[27,0,8,"COTEMIG"],[28,0,8,"COTEMIG"],[30,0,8,"COTEMIG"],[23,0,14,"Compensação de horas"],[1,0,15,"Ausência"]],"atualizado":"15/10"},"2026-11":null,"2026-12":null};
+const MKEYS = Object.keys(MONTHS);
+const MNOMES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const FERIADOS = {"2026-10":{12:"Feriado"},"2026-11":{2:"Finados",20:"Consciência Negra"},"2026-12":{8:"Imaculada Conceição",25:"Natal"}};
+const BASE_INS = MONTHS[MKEYS.find(k=>MONTHS[k])].ins;
+let MKEY = (()=>{ const n=new Date(), k=n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0"); return MONTHS[k] ? k : (MKEYS.filter(x=>MONTHS[x]).pop()||MKEYS[0]); })();
+let DATA, YEAR, MONTH, HOLIDAYS, MNOME;
+function setMonthBasics(k){ MKEY=k; DATA=MONTHS[k]||{turmas:[],ins:BASE_INS,ucs:[],rows:[],out:[],vazio:true}; YEAR=+k.slice(0,4); MONTH=+k.slice(5)-1; HOLIDAYS=FERIADOS[k]||{}; MNOME=MNOMES[MONTH]; }
+setMonthBasics(MKEY);
+function loadMonth(k){
+  setMonthBasics(k);
+  lessons = DATA.rows.map(([d,t,c,i,u,e,h,hr])=>({d,t,c,i,u,e:!!e,h:h||4,hr:hr||"",turma:DATA.turmas[c]}));
+  OUTROS = (DATA.out||[]).map(([d,t,i,lab])=>({d,t,i,lab}));
+  DIAS_UTEIS = Array.from({length:new Date(YEAR,MONTH+1,0).getDate()},(_,k)=>k+1).filter(isWorkday);
 }
-$("chips").onclick=e=>{const n=e.target.dataset.n;if(n){sel=n;chips();mostrar()}};
-chips();
+const TRAINEES = ["João","Maiara","Vitor"];
+const PEOPLE = DATA.ins.concat(TRAINEES);
+const isTrainee = i => i >= DATA.ins.length;
+const TURNOS = ["Manhã","Tarde","Noite"];
+const TSHORT = ["M","T","N"];
+const WD = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+const WDL = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+
+let lessons = DATA.rows.map(([d,t,c,i,u,e,h,hr])=>({d,t,c,i,u,e:!!e,h:h||4,hr:hr||"",turma:DATA.turmas[c]}));
+const UC_NOMES = {"EI":"Excel Intermediário","EA":"Excel Avançado","IE":"Informática para Escritório"};
+const slug = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cap = s => s.replace(/^./,c=>c.toUpperCase());
+
+let state = {inst:null, view:"cal", day:null, formOpen:false, draft:null, saving:false, err:"", confirmDel:null};
+try{ const v=localStorage.getItem("ocup-view"); if(v) state.view=v; }catch(e){}
+
+/* ---------- observações (db compartilhado) ---------- */
+let db=null, userCap=null, myId=null, notes=[], notesReady=false, notesStatus="loading", names={}, pendingRender=false;
+function notesFor(name){ return notes.filter(n=>(n.m||"2026-10")===MKEY && (n.pessoa===name || n.apoio===name)); }
+
+async function initNotes(){
+  try{ db = await window.claude?.use?.("db"); }catch(e){ db=null; }
+  if(!db){ notesStatus="off"; safeRender(); return; }
+  try{ userCap = await window.claude.use("user"); myId = userCap ? await userCap.id() : null; }catch(e){}
+  db.collection("notas").orderBy("criadoEm","asc").limit(1000).onSnapshot(async snap=>{
+    notes = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    notesStatus="on"; notesReady=true;
+    const ids=[...new Set(notes.map(n=>n.autor).filter(Boolean))].filter(id=>!(id in names));
+    if(ids.length && userCap){ try{ const ps=await userCap.profiles(ids); ids.forEach(id=>names[id]=ps[id]?.name||""); }catch(e){} }
+    safeRender();
+  }, err=>{ notesStatus="off"; safeRender(); });
+}
+function safeRender(){
+  const a=document.activeElement;
+  if(a && a.closest && a.closest(".form")){ pendingRender=true; return; }
+  render();
+}
+document.addEventListener("focusout",()=>setTimeout(()=>{ if(pendingRender && !(document.activeElement?.closest?.(".form"))){ pendingRender=false; render(); } },0));
+
+async function saveNote(){
+  const f=state.draft; if(!f || !f.texto.trim()) { state.err="Escreva a observação antes de salvar."; render(); return; }
+  state.saving=true; state.err=""; render();
+  const body={d:state.day, t:+f.t, pessoa:PEOPLE[state.inst], apoio:f.apoio||"", turma:f.turma||"", texto:f.texto.trim().slice(0,1000), criadoEm:Date.now(), autor:myId||null, m:MKEY};
+  try{ await db.collection("notas").add(body); state.formOpen=false; state.draft=null; }
+  catch(e){ state.err = e?.code==="invalid_argument" ? "Você não tem permissão para salvar observações. Peça à coordenação acesso de colaborador." : e?.code==="quota_exceeded" ? "Limite de observações atingido. Exclua observações antigas." : "Não foi possível salvar agora. Tente de novo."; }
+  state.saving=false; pendingRender=false; render();
+}
+async function deleteNote(id){
+  if(state.confirmDel!==id){ state.confirmDel=id; render(); return; }
+  state.confirmDel=null;
+  try{ await db.doc("notas/"+id).delete(); }catch(e){ state.err="Não foi possível excluir. Verifique sua permissão."; }
+  render();
+}
+
+/* ---------- utilidades ---------- */
+function today(){ const n=new Date(); return {y:n.getFullYear(),m:n.getMonth(),d:n.getDate()}; }
+function todayDay(){ const t=today(); if(t.y===YEAR&&t.m===MONTH) return t.d; if(t.y<YEAR||(t.y===YEAR&&t.m<MONTH)) return 0; return 99; }
+function instLessons(i){ return lessons.filter(l=>l.i===i); }
+let OUTROS=(DATA.out||[]).map(([d,t,i,lab])=>({d,t,i,lab}));
+function instOutros(i){ return OUTROS.filter(o=>o.i===i); }
+function colorMap(ls){
+  const cnt={}; ls.forEach(l=>cnt[l.u]=(cnt[l.u]||0)+1);
+  const order=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]);
+  const m={}; order.forEach((u,k)=>m[u]=`var(--c${k%6})`); return {m,cnt,order:order.map(Number)};
+}
+function clashMap(ls){
+  const g={}; ls.filter(l=>!l.e).forEach(l=>{const k=l.d+"-"+l.t;(g[k]=g[k]||[]).push(l)});
+  const m={}; Object.entries(g).forEach(([k,v])=>{ if(v.length>1) m[k]=v; }); return m;
+}
+function turmaLabel(t){ return t[1] ? `${t[0]} (${t[1]})` : t[0]; }
+function dateLabel(d){ const dt=new Date(YEAR,MONTH,d); return `${WDL[dt.getDay()]}, ${d} de ${MNOME}`; }
+function turnoName(t){ return t===3 ? "Dia todo" : TURNOS[t]; }
+const sortL=(a,b)=>a.d-b.d||a.t-b.t||a.e-b.e;
+
+
+/* ---------- ocupação ---------- */
+const META=0.85, HORAS_TURNO=4;
+const CARGA={"Elias":20,"Rômulo":20}; // demais: 40 h semanais
+const cargaSemanal = n => CARGA[n]||40;
+const isWorkday = d => { const w=new Date(YEAR,MONTH,d).getDay(); return w>=1&&w<=5&&!HOLIDAYS[d]; };
+let DIAS_UTEIS = Array.from({length:new Date(YEAR,MONTH+1,0).getDate()},(_,k)=>k+1).filter(isWorkday);
+function weekStart(d){ return d-((new Date(YEAR,MONTH,d).getDay()+6)%7); }
+function occupancy(i){
+  if(isTrainee(i)) return null;
+  const n=PEOPLE[i], ls=instLessons(i), porDia=cargaSemanal(n)/5;
+  const slotH={}; ls.filter(l=>!l.e).forEach(l=>{ const k=l.d+"-"+l.t; slotH[k]=Math.max(slotH[k]||0,l.h); });
+  const slots=new Set(Object.keys(slotH));
+  const horas=Object.values(slotH).reduce((a,b)=>a+b,0), disp=DIAS_UTEIS.length*porDia;
+  const weeks={};
+  DIAS_UTEIS.forEach(d=>{ const w=weekStart(d); (weeks[w]=weeks[w]||{disp:0,horas:0}).disp+=porDia; });
+  slots.forEach(k=>{ const d=+k.split("-")[0], w=weekStart(d); (weeks[w]=weeks[w]||{disp:0,horas:0}).horas+=slotH[k]; });
+  return {carga:cargaSemanal(n), horas, disp, pct:horas/disp, turnos:slots.size, aulas:ls.length, weeks};
+}
+function occClass(p){ return p>1.0001 ? "high" : p>=META ? "ok" : "low"; }
+function occStatus(o){
+  const c=occClass(o.pct);
+  if(c==="ok") return `<span class="status ok">Dentro da meta</span>`;
+  if(c==="high") return `<span class="status high">Acima da jornada</span>`;
+  return `<span class="status low">Abaixo da meta</span>`;
+}
+function occDesc(o){
+  const c=occClass(o.pct), metaH=Math.ceil(o.disp*META);
+  let s=`<b>${o.horas} h</b> em aula de <b>${o.disp} h</b> disponíveis (${o.carga} h semanais, ${DIAS_UTEIS.length} dias úteis). `;
+  if(c==="low"){ const f=metaH-o.horas; s+=`Faltam ${f} h, cerca de ${Math.ceil(f/HORAS_TURNO)} ${Math.ceil(f/HORAS_TURNO)===1?"turno":"turnos"}, para chegar a 85%.`; }
+  else if(c==="high") s+=`Passa ${o.horas-o.disp} h da jornada do mês.`;
+  else s+=`A meta de 85% equivale a ${metaH} h (${Math.ceil(metaH/HORAS_TURNO)} turnos); está ${o.horas-metaH} h acima dela.`;
+  return s;
+}
+const pctTxt = p => Math.round(p*100)+"%";
+function barHTML(p){
+  const c=occClass(p), w=Math.min(p,1)*100;
+  return `<div class="obar"><span class="fill ${c}" style="width:${w}%"></span><span class="meta" style="left:${META*100}%" title="Meta 85%"></span></div>`;
+}
+function occPanel(i){
+  if(DATA.vazio) return "";
+  const o=occupancy(i); if(!o) return "";
+  const wk=Object.entries(o.weeks).sort((a,b)=>a[0]-b[0]).map(([w,v])=>{
+    const p=v.disp?v.horas/v.disp:0, c=occClass(p);
+    return `<div>Semana ${Math.max(1,+w)}/${MONTH+1}<b>${v.disp?pctTxt(p):"–"}</b>${v.horas} de ${v.disp} h<div class="wb"><i style="width:${Math.min(p,1)*100}%;background:var(--${c==="ok"?"ok":c==="high"?"over":"warn"})"></i></div></div>`;
+  }).join("");
+  return `<section class="occ" aria-label="Ocupação do mês">
+    <div><div class="lbl">Ocupação em ${MNOME} ${occStatus(o)}</div><div class="desc" style="margin-top:4px">${occDesc(o)}</div></div>
+    <div class="pct">${pctTxt(o.pct)}</div>
+    <div class="barwrap">${barHTML(o.pct)}<div class="scale"><span>0%</span><span class="m" style="left:${META*100}%">meta 85%</span><span>100%</span></div></div>
+  </section>`;
+}
+function teamHTML(){
+  if(DATA.vazio) return "";
+  const rows=DATA.ins.map((n,i)=>({n,i,o:occupancy(i)})).sort((a,b)=>b.o.pct-a.o.pct);
+  const ok=rows.filter(r=>occClass(r.o.pct)==="ok").length;
+  return `<section class="team"><h2>Ocupação da equipe</h2><p>${ok} de ${rows.length} instrutores entre 85% e 100% da jornada em ${MNOME}. A linha vertical marca a meta de 85%.</p>
+    ${rows.map(r=>`<button class="trow" data-i="${r.i}"><span class="nm">${esc(r.n)}<small>${r.o.horas} de ${r.o.disp} h</small></span>${barHTML(r.o.pct)}<span class="v">${pctTxt(r.o.pct)}</span></button>`).join("")}
+  </section>`;
+}
+
+/* ---------- seletor ---------- */
+function renderPicker(){
+  const el=document.getElementById("picker"); el.hidden = state.inst===null;
+  el.innerHTML = PEOPLE.map((n,i)=>(i===DATA.ins.length?`<span class="sep">Trainees</span>`:"")+
+    `<button class="chip${isTrainee(i)?" trainee":""}" data-i="${i}" aria-pressed="${state.inst===i}">${esc(n)}</button>`).join("");
+  el.querySelectorAll("button").forEach(b=>b.onclick=()=>select(+b.dataset.i));
+  const sel=el.querySelector('[aria-pressed="true"]'); if(sel) sel.scrollIntoView({block:"nearest",inline:"center"});
+}
+function select(i){
+  state.inst=i; state.day=null; state.formOpen=false; state.draft=null; state.err="";
+  const td=todayDay(); if(td>=1&&td<=31) state.day=td;
+  if(i===null) history.replaceState(null,"",location.pathname+location.search);
+  else { history.replaceState(null,"","#"+slug(PEOPLE[i])); try{localStorage.setItem("ocup-inst",PEOPLE[i]);}catch(e){} }
+  render(); window.scrollTo({top:0});
+}
+function renderWelcome(){
+  const btn=i=>{
+    const n=instLessons(i).length;
+    const sub = DATA.vazio ? "Aguardando planilha" : isTrainee(i) ? (n?`Trainee, ${n} aulas`:"Trainee") : `${n} aulas, ${pctTxt(occupancy(i).pct)} ocupado`;
+    return `<button data-i="${i}" class="${isTrainee(i)?"trainee":""}">${esc(PEOPLE[i])}<small>${sub}</small></button>`;
+  };
+  return `<section class="welcome">
+    <h1>Qual é a sua agenda em ${MNOME}?</h1>
+    <p>Escolha seu nome para ver dias, turnos, turmas e unidades curriculares do mês.</p>
+    <div class="grid-names">${DATA.ins.map((_,i)=>btn(i)).join("")}</div>
+    <p class="grid-label">Trainees</p>
+    <div class="grid-names">${TRAINEES.map((_,k)=>btn(DATA.ins.length+k)).join("")}</div>
+  </section>${teamHTML()}`;
+}
+
+/* ---------- calendário ---------- */
+function slotHTML(inT, cm, clash, apoio, outro){
+  if(!inT.length){
+    if(outro) return `<span class="slot outro" title="${esc(TURNOS[outro.t]+": "+outro.lab)}">${esc(outro.lab)}</span>`;
+    if(apoio) return `<span class="slot apoio" title="${esc("Apoio: "+(apoio.turma||"")+" "+apoio.texto)}">Apoio</span>`;
+    return `<span class="slot empty"></span>`;
+  }
+  const l=inT.find(x=>!x.e)||inT[0];
+  const uc=DATA.ucs[l.u];
+  const title=inT.map(x=>`${TURNOS[x.t]}: ${DATA.ucs[x.u]}${x.e?" (EAD)":""} | ${turmaLabel(x.turma)}`).join("\n");
+  const extra = clash ? `<span class="more">+${clash.length-1}</span>` : (l.e?'<span class="x">EAD</span>':"");
+  return `<span class="slot ${l.e?"ead":"fill"}${clash?" clash":""}" style="--uc:${cm.m[l.u]}" title="${esc((clash?"Atenção: turno com duas aulas presenciais\n":"")+title)}">${esc(uc)}${extra}</span>`;
+}
+function renderCal(ls, cm, cl, ns, me){
+  const first=new Date(YEAR,MONTH,1);
+  let start=new Date(first); start.setDate(1-((start.getDay()+6)%7));
+  const td=todayDay();
+  let html=`<div class="cal"><div class="cal-head"><div></div>${[1,2,3,4,5,6].map(d=>`<div>${WD[d]}</div>`).join("")}</div>`;
+  let cur=new Date(start);
+  while(true){
+    html+=`<div class="cal-week"><div class="rail"><span></span>${TSHORT.map(t=>`<span>${t}</span>`).join("")}</div>`;
+    for(let k=0;k<7;k++){
+      const d=cur.getDate(), inM=cur.getMonth()===MONTH, dow=cur.getDay();
+      if(dow!==0){
+        if(!inM){ html+=`<div class="day out"><div class="dnum"><span>${d}</span></div></div>`; }
+        else{
+          const dl=ls.filter(l=>l.d===d), dn=ns.filter(n=>n.d===d);
+          const hol=HOLIDAYS[d];
+          const hasClash=[0,1,2].some(t=>cl[d+"-"+t]);
+          let right="";
+          if(dn.length) right+=`<span class="ico" aria-label="Tem observação">✎</span>`;
+          if(hasClash) right+=`<span class="att">!<span class="long"> Atenção</span></span>`;
+          else if(dl.length&&!hol) right+=`<em>${dl.length}</em>`;
+          let inner=`<div class="dnum"><span>${d}</span><span class="right">${right}</span></div>`;
+          if(hol) inner+=`<span class="holiday">${hol}</span>`;
+          else for(let t=0;t<3;t++){
+            const apoio=dn.find(n=>n.apoio===me && (n.t===t||n.t===3));
+            inner+=slotHTML(dl.filter(l=>l.t===t), cm, cl[d+"-"+t], apoio, OUTROS.find(o=>o.i===state.inst&&o.d===d&&o.t===t));
+          }
+          html+=`<button class="day${d===td?" today":""}" data-d="${d}" aria-pressed="${state.day===d}" aria-label="${esc(dateLabel(d))}, ${dl.length} aulas${hasClash?", atenção: choque de turno":""}${dn.length?", tem observação":""}">${inner}</button>`;
+        }
+      }
+      cur.setDate(cur.getDate()+1);
+    }
+    html+=`</div>`;
+    if(cur.getMonth()!==MONTH) break;
+  }
+  return html+`</div>`;
+}
+
+/* ---------- aulas, avisos e notas ---------- */
+function lessonHTML(l, cm){
+  return `<div class="lesson" style="--uc:${cm.m[l.u]}"><span class="bar${l.e?" ead":""}"></span><div>
+    <div class="row1"><span class="uc">${esc(DATA.ucs[l.u])}</span>${UC_NOMES[DATA.ucs[l.u]]?`<span class="turno">${esc(UC_NOMES[DATA.ucs[l.u]])}</span>`:""}<span class="turno">${TURNOS[l.t]}${l.hr?", "+esc(l.hr):""}</span>${l.e?'<span class="tag">EAD</span>':""}</div>
+    <div class="turma">${esc(turmaLabel(l.turma))}</div></div></div>`;
+}
+function alertHTML(d, cl, withButton){
+  const items=[0,1,2].filter(t=>cl[d+"-"+t]);
+  if(!items.length) return "";
+  return `<div class="alert" role="note"><strong>Atenção:</strong> duas aulas presenciais no mesmo turno. Confirme com a coordenação.
+    <ul>${items.map(t=>`<li>${TURNOS[t]}: ${cl[d+"-"+t].map(l=>`${esc(DATA.ucs[l.u])} na ${esc(l.turma[0])}`).join(" e ")}</li>`).join("")}</ul>
+    ${withButton && notesStatus==="on" ? `<button class="btn ghost" data-apoio-t="${items[0]}">Registrar apoio</button>`:""}</div>`;
+}
+function noteHTML(n, me){
+  const autor = n.autor ? (n.autor===myId ? "você" : (names[n.autor]||"")) : "";
+  const when = new Date(n.criadoEm||0).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"});
+  let who = turnoName(n.t);
+  if(n.turma) who += ", "+n.turma;
+  let apoioTxt="";
+  if(n.apoio){ apoioTxt = n.apoio===me ? `Você apoia ${esc(n.pessoa)}` : `Apoio: ${esc(n.apoio)}`; }
+  return `<div class="note"><div class="meta"><span><span class="who">${esc(who)}</span>${apoioTxt?`, ${apoioTxt}`:""}</span>
+    <span>${autor?`${esc(autor)}, `:""}${when} <button class="del${state.confirmDel===n.id?" sure":""}" data-del="${esc(n.id)}">${state.confirmDel===n.id?"Confirmar exclusão":"Excluir"}</button></span></div>
+    <p>${esc(n.texto)}</p></div>`;
+}
+function formHTML(dl){
+  const f=state.draft;
+  const tOpts=[0,1,2,3].map(t=>`<option value="${t}" ${+f.t===t?"selected":""}>${turnoName(t)}</option>`).join("");
+  const turmas=[...new Set(dl.map(l=>l.turma[0]))];
+  const trOpts=`<option value="">Nenhuma específica</option>`+turmas.map(c=>`<option ${f.turma===c?"selected":""}>${esc(c)}</option>`).join("");
+  const others=PEOPLE.filter((_,i)=>i!==state.inst);
+  const apOpts=`<option value="">Ninguém</option><optgroup label="Trainees">${TRAINEES.filter(n=>n!==PEOPLE[state.inst]).map(n=>`<option ${f.apoio===n?"selected":""}>${esc(n)}</option>`).join("")}</optgroup><optgroup label="Instrutores">${DATA.ins.filter(n=>n!==PEOPLE[state.inst]).map(n=>`<option ${f.apoio===n?"selected":""}>${esc(n)}</option>`).join("")}</optgroup>`;
+  return `<div class="form">
+    <div class="two"><label>Turno<select data-f="t">${tOpts}</select></label><label>Turma<select data-f="turma">${trOpts}</select></label></div>
+    <label>Quem vai apoiar<select data-f="apoio">${apOpts}</select></label>
+    <label>Observação<textarea data-f="texto" maxlength="1000" placeholder="Ex.: Vitor assume a turma na manhã enquanto Henrique fica na APREDCOM02M">${esc(f.texto)}</textarea></label>
+    ${state.err?`<p class="err">${esc(state.err)}</p>`:""}
+    <div style="display:flex;gap:8px"><button class="btn" data-save ${state.saving?"disabled":""}>${state.saving?"Salvando…":"Salvar observação"}</button><button class="btn ghost" data-cancel>Cancelar</button></div>
+  </div>`;
+}
+function notesSection(d, dl, ns, me){ return "";
+  if(notesStatus==="off") return `<div class="notes"><h3>Observações</h3><p class="hint">Observações ficam disponíveis quando o site é aberto pelo link do Claude.</p></div>`;
+  if(notesStatus==="loading") return `<div class="notes"><h3>Observações</h3><p class="hint">Carregando…</p></div>`;
+  const dn=ns.filter(n=>n.d===d);
+  return `<div class="notes"><h3>Observações</h3>
+    ${dn.map(n=>noteHTML(n,me)).join("") || (state.formOpen?"":`<p class="hint" style="margin-bottom:8px">Nenhuma observação neste dia.</p>`)}
+    ${state.formOpen ? formHTML(dl) : `<button class="btn ghost" data-add>Adicionar observação</button>`}
+    ${!state.formOpen && state.err?`<p class="err">${esc(state.err)}</p>`:""}
+  </div>`;
+}
+
+/* ---------- lista ---------- */
+function renderList(ls, cm, cl, ns, me){
+  const td=todayDay();
+  const days=[...new Set(ls.map(l=>l.d).concat(ns.map(n=>n.d)).concat(instOutros(state.inst).map(o=>o.d)))].sort((a,b)=>a-b);
+  let html=`<div class="list">`, lastWeek=null;
+  days.forEach(d=>{
+    const dt=new Date(YEAR,MONTH,d);
+    const monday=d-((dt.getDay()+6)%7);
+    if(monday!==lastWeek){ lastWeek=monday; html+=`<p class="week-label">Semana de ${Math.max(1,monday)}/${MONTH+1}</p>`; }
+    const dn=ns.filter(n=>n.d===d);
+    html+=`<div class="lday${d<td?" past":""}"><div class="ldate">${d}<small>${WD[dt.getDay()]}</small></div><div>
+      ${alertHTML(d,cl,false)}
+      ${ls.filter(l=>l.d===d).sort(sortL).map(l=>lessonHTML(l,cm)).join("")}${outrosHTML(d)}
+      ${dn.map(n=>`<div class="lnote"><b>${esc(turnoName(n.t))}${n.apoio?`, apoio ${esc(n.apoio===me?"seu a "+n.pessoa:n.apoio)}`:""}:</b> ${esc(n.texto)}</div>`).join("")}
+    </div></div>`;
+  });
+  if(!days.length) html+=`<div class="panel"><p class="hint">Nenhuma aula ou apoio registrado neste mês ainda. Quando alguém registrar um apoio com seu nome, ele aparece aqui.</p></div>`;
+  return html+`</div>`;
+}
+
+/* ---------- lateral ---------- */
+function outrosHTML(d){ return instOutros(state.inst).filter(o=>o.d===d).sort((a,b)=>a.t-b.t).map(o=>`<div class="outro-line"><b>${TURNOS[o.t]}:</b> ${esc(o.lab)}</div>`).join(""); }
+function renderSide(ls, cm, cl, ns, me){
+  let dayPanel;
+  if(state.day){
+    const dl=ls.filter(l=>l.d===state.day).sort(sortL);
+    dayPanel=`<section class="panel" id="daypanel"><h2>${esc(cap(dateLabel(state.day)))}</h2>${
+      HOLIDAYS[state.day]?`<p class="hint">Feriado, sem aulas.</p>`:
+      alertHTML(state.day,cl,true)+(dl.length?dl.map(l=>lessonHTML(l,cm)).join(""):"")+outrosHTML(state.day)+(!dl.length&&!instOutros(state.inst).some(o=>o.d===state.day)?`<p class="hint">Sem aulas fixas neste dia.</p>`:"")}
+      ${HOLIDAYS[state.day]?"":notesSection(state.day, dl, ns, me)}</section>`;
+  } else {
+    dayPanel=`<section class="panel"><h2>Detalhes do dia</h2><p class="hint">Toque em um dia do calendário para ver turma, turno e UC.</p></section>`;
+  }
+  const clashKeys=Object.keys(cl).sort((a,b)=>{const[x,y]=a.split("-").map(Number),[p,q]=b.split("-").map(Number);return x-p||y-q;});
+  const attPanel = clashKeys.length ? `<section class="panel"><h2>Atenção</h2><p class="hint">${clashKeys.length} ${clashKeys.length===1?"turno tem":"turnos têm"} duas aulas presenciais ao mesmo tempo.</p>
+    <div class="clashdays">${clashKeys.map(k=>{const[d,t]=k.split("-").map(Number);return `<button data-go="${d}">${d}/${MONTH+1} ${TURNOS[t].toLowerCase()}</button>`;}).join("")}</div></section>` : "";
+  let summary;
+  if(isTrainee(state.inst) && !ls.length){
+    const ap=ns.filter(n=>n.apoio===me);
+    summary=`<section class="panel"><h2>Resumo do mês</h2><div class="stats"><div><b>${ap.length}</b><span>apoios</span></div><div><b>${new Set(ap.map(n=>n.d)).size}</b><span>dias</span></div><div><b>${new Set(ap.map(n=>n.pessoa)).size}</b><span>instrutores</span></div></div>
+      <p class="hint" style="margin-top:10px">Trainees não têm turmas fixas. Quando houver apoio definido, a coordenação avisa por aqui.</p></section>`;
+  } else {
+    const pres=ls.filter(l=>!l.e).length, ead=ls.length-pres;
+    const ucItems=cm.order.map(u=>{
+      const ts=[...new Set(ls.filter(l=>l.u===u).map(l=>l.c))].map(c=>DATA.turmas[c][0]);
+      return `<li style="--uc:${cm.m[u]}"><span class="sw">${esc(DATA.ucs[u])}</span><small>${esc(ts.join(", "))}</small><span class="n">${cm.cnt[u]}</span></li>`;
+    }).join("");
+    const tmap={}; ls.forEach(l=>{ (tmap[l.c]=tmap[l.c]||{n:0,t:l.t}).n++; });
+    const tItems=Object.entries(tmap).sort((a,b)=>a[1].t-b[1].t||b[1].n-a[1].n).map(([c,v])=>`<li><span>${esc(turmaLabel(DATA.turmas[c]))}</span><span>${TURNOS[v.t]}, ${v.n}</span></li>`).join("");
+    summary=`<section class="panel"><h2>Resumo do mês</h2>
+      <div class="stats"><div><b>${ls.length}</b><span>aulas</span></div><div><b>${pres}</b><span>presenciais</span></div><div><b>${ead}</b><span>EAD</span></div></div>
+      <ul class="uclist">${ucItems}</ul></section>
+    <section class="panel"><h2>Turmas</h2><ul class="turmas">${tItems}</ul></section>`;
+  }
+  return `<aside class="side">${dayPanel}${attPanel}${DATA.vazio?"":summary}</aside>`;
+}
+
+function nextLesson(ls, ns, me){
+  if(DATA.vazio) return "";
+  const td=todayDay();
+  if(isTrainee(state.inst) && !ls.length){
+    const n=ns.filter(x=>x.apoio===me && x.d>=Math.max(td,1)).sort((a,b)=>a.d-b.d||a.t-b.t)[0];
+    return `<div class="next"><b>Próximo apoio</b><span>${n?esc(cap(dateLabel(n.d)))+", "+turnoName(n.t).toLowerCase():"Nenhum apoio definido"}</span>${n?`<br>com ${esc(n.pessoa)}${n.turma?" na "+esc(n.turma):""}`:""}</div>`;
+  }
+  const n=ls.filter(l=>l.d>=Math.max(td,1)).sort(sortL)[0];
+  if(!n) return `<div class="next"><b>Próxima aula</b><span>Sem aulas restantes em ${MNOME}</span></div>`;
+  const label = n.d===td ? "Hoje" : cap(dateLabel(n.d));
+  return `<div class="next"><b>${td<1?"Primeira aula do mês":"Próxima aula"}</b><span>${esc(label)}, ${TURNOS[n.t].toLowerCase()}</span><br>${esc(DATA.ucs[n.u])}${n.e?" (EAD)":""} na ${esc(n.turma[0])}</div>`;
+}
+
+/* ---------- render ---------- */
+function renderMes(){
+  const el=document.getElementById("meses");
+  el.innerHTML=MKEYS.map(k=>`<button data-m="${k}" aria-pressed="${k===MKEY}">${cap(MNOMES[+k.slice(5)-1])}</button>`).join("");
+  el.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    if(b.dataset.m===MKEY) return;
+    loadMonth(b.dataset.m); const td=todayDay(); state.day=(td>=1&&td<=31)?td:null;
+    state.formOpen=false; state.draft=null; state.err=""; render();
+  });
+  document.getElementById("atualizado").textContent = DATA.atualizado ? `Atualizado em ${DATA.atualizado}` : "";
+  document.getElementById("mesbar").innerHTML = DATA.vazio ? `<div class="alert"><strong>Aguardando planilha:</strong> a ocupação de ${MNOME} ainda não foi enviada. Os feriados já aparecem no calendário.</div>` : "";
+}
+function render(){
+  renderMes(); renderPicker();
+  const app=document.getElementById("app");
+  if(state.inst===null){
+    app.innerHTML=renderWelcome();
+    app.querySelectorAll(".grid-names button, .trow").forEach(b=>b.onclick=()=>select(+b.dataset.i));
+    return;
+  }
+  const me=PEOPLE[state.inst];
+  const ls=instLessons(state.inst), cm=colorMap(ls), cl=clashMap(ls), ns=notesFor(me);
+  let sub;
+  if(isTrainee(state.inst) && !ls.length) sub=`Trainee. Sem turmas fixas em ${MNOME}.`;
+  else {
+    const turnos=[...new Set(ls.map(l=>l.t))].sort().map(t=>TURNOS[t].toLowerCase());
+    const nT=new Set(ls.map(l=>l.c)).size;
+    sub=`${nT} ${nT===1?"turma":"turmas"} no turno da ${turnos.join(" e ")}, ${cm.order.length} ${cm.order.length===1?"unidade curricular":"unidades curriculares"}`;
+  }
+  app.innerHTML=`
+    <header class="hero"><h1>${esc(me)}</h1>${nextLesson(ls,ns,me)}<p class="sub">${esc(DATA.vazio?`Aguardando a planilha de ${MNOME}.`:sub)}</p></header>${occPanel(state.inst)}
+    <div class="main">
+      <div>
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="Visualização">
+            <button data-v="cal" aria-pressed="${state.view==="cal"}">Calendário</button>
+            <button data-v="list" aria-pressed="${state.view==="list"}">Lista</button>
+          </div>
+          <div class="key"><span><i class="pres"></i>Presencial</span><span><i class="ead"></i>EAD</span></div>
+        </div>
+        ${state.view==="cal"?renderCal(ls,cm,cl,ns,me):renderList(ls,cm,cl,ns,me)}
+      </div>
+      ${renderSide(ls,cm,cl,ns,me)}
+    </div>`;
+  app.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{state.view=b.dataset.v;try{localStorage.setItem("ocup-view",state.view)}catch(e){};render();});
+  const goDay=d=>{
+    state.day = d; state.formOpen=false; state.draft=null; state.err=""; state.confirmDel=null; render();
+    if(state.day && window.innerWidth<=900){ document.getElementById("daypanel")?.scrollIntoView({behavior:"smooth",block:"start"}); }
+  };
+  app.querySelectorAll(".day[data-d]").forEach(b=>b.onclick=()=>goDay(state.day===+b.dataset.d?null:+b.dataset.d));
+  app.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{ if(state.view!=="cal"){state.view="cal";} goDay(+b.dataset.go); });
+  const openForm=t=>{ state.formOpen=true; state.err=""; state.draft={t:String(t??0), turma:"", apoio:"", texto:""}; render(); app.querySelector('.form select[data-f="apoio"]')?.focus(); };
+  app.querySelector("[data-add]")?.addEventListener("click",()=>{
+    const dl=ls.filter(l=>l.d===state.day); openForm(dl.length?Math.min(...dl.map(l=>l.t)):0);
+  });
+  app.querySelectorAll("[data-apoio-t]").forEach(b=>b.onclick=()=>openForm(+b.dataset.apoioT));
+  app.querySelectorAll(".form [data-f]").forEach(el=>{
+    const upd=()=>{ state.draft[el.dataset.f]=el.value; };
+    el.addEventListener("input",upd); el.addEventListener("change",upd);
+  });
+  app.querySelector("[data-save]")?.addEventListener("click",saveNote);
+  app.querySelector("[data-cancel]")?.addEventListener("click",()=>{state.formOpen=false;state.draft=null;state.err="";pendingRender=false;render();});
+  app.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>deleteNote(b.dataset.del));
+}
+
+function fromHash(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  let i=PEOPLE.findIndex(n=>slug(n)===h);
+  if(i<0 && !h){ try{ const s=localStorage.getItem("ocup-inst"); i=PEOPLE.indexOf(s); }catch(e){} }
+  state.inst = i>=0 ? i : null;
+  const td=todayDay(); state.day = (td>=1&&td<=31) ? td : null;
+}
+window.addEventListener("hashchange",()=>{fromHash();render();});
+fromHash(); render();
 </script>
 </body>
 </html>
